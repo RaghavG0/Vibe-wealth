@@ -123,7 +123,7 @@ export function Hero() {
                 className="border-vibe-purple-200 text-vibe-purple-700 hover:bg-vibe-purple-50 group"
               >
                 <span className="mr-2">Login</span>
-                <ArrowRight className="w-5 h-5 rotate-45 group-hover:scale-125 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+                <ArrowRight className="w-5 h-5 -rotate-45 group-hover:scale-125 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
               </Button>
             </motion.div>
 
