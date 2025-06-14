@@ -36,7 +36,6 @@ export function Hero() {
   const floatingIcons = [
     { Icon: TrendingUp, delay: 0, position: "top-20 left-20" },
     { Icon: DollarSign, delay: 2, position: "top-40 right-32" },
-    { Icon: Target, delay: 4, position: "bottom-32 left-32" },
     { Icon: Sparkles, delay: 1, position: "bottom-20 right-20" },
   ];
 
@@ -142,7 +141,7 @@ export function Hero() {
             >
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-vibe-mint-500 rounded-full mr-2" />
-                Free Forever P
+                Free Forever Plan
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-vibe-blue-500 rounded-full mr-2" />
