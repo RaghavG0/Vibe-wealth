@@ -147,12 +147,6 @@ export function Features() {
                   <p className="text-vibe-gray-600 leading-relaxed">
                     {feature.description}
                   </p>
-
-                  {/* Hover indicator */}
-                  <div className="mt-6 flex items-center text-vibe-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-sm font-medium">Learn more</span>
-                    <TrendingUp className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </div>
                 </div>
               </motion.div>
             );

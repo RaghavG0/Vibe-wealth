@@ -122,8 +122,8 @@ export function Hero() {
                 variant="outline"
                 className="border-vibe-purple-200 text-vibe-purple-700 hover:bg-vibe-purple-50 group"
               >
-                <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform" />
-                Watch Demo
+                <span className="mr-2">Login</span>
+                <ArrowRight className="w-5 h-5 rotate-45 group-hover:scale-125 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
               </Button>
             </motion.div>
 
@@ -133,11 +133,11 @@ export function Hero() {
             >
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-vibe-mint-500 rounded-full mr-2" />
-                No Credit Card Required
+                Free Forever P
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-vibe-blue-500 rounded-full mr-2" />
-                Free Forever Plan
+                24/7 AI Support
               </div>
             </motion.div>
           </div>
@@ -149,17 +149,7 @@ export function Hero() {
           >
             <div className="relative w-full max-w-lg">
               {/* Main Card */}
-              <motion.div
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="bg-white rounded-3xl shadow-2xl p-8 border border-vibe-gray-100"
-              >
+              <div className="bg-white rounded-3xl shadow-2xl p-8 border border-vibe-gray-100">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-vibe-gradient rounded-2xl mx-auto mb-4 flex items-center justify-center">
                     <TrendingUp className="w-8 h-8 text-white" />
@@ -184,21 +174,10 @@ export function Hero() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Floating Stats */}
-              <motion.div
-                animate={{
-                  y: [0, -15, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg p-4 border border-vibe-gray-100"
-              >
+              <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg p-4 border border-vibe-gray-100">
                 <div className="text-center">
                   <div className="text-lg font-bold text-vibe-purple-600">
                     🎯
@@ -210,20 +189,9 @@ export function Hero() {
                     78% Complete
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                animate={{
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 2,
-                }}
-                className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-lg p-4 border border-vibe-gray-100"
-              >
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-lg p-4 border border-vibe-gray-100">
                 <div className="flex items-center space-x-2">
                   <div className="w-8 h-8 bg-vibe-mint-100 rounded-lg flex items-center justify-center">
                     <span className="text-sm">💰</span>
@@ -235,7 +203,7 @@ export function Hero() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         </motion.div>

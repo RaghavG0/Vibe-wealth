@@ -8,6 +8,7 @@ import {
   Quote,
   CheckCircle,
 } from "lucide-react";
+import { AnimatedCounter } from "./AnimatedCounter";
 
 const stats = [
   {
@@ -133,8 +134,8 @@ export function WhyUs() {
                 >
                   <Icon className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-3xl font-bold hero-text-gradient mb-2">
-                  {stat.number}
+                <div className="mb-2">
+                  <AnimatedCounter value={stat.number} />
                 </div>
                 <div className="text-vibe-gray-600 font-medium">
                   {stat.label}

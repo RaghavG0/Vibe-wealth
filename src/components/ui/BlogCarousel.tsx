@@ -249,19 +249,6 @@ export function BlogCarousel() {
             ))}
           </div>
         </div>
-
-        {/* View All Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
-        >
-          <button className="bg-white border-2 border-vibe-purple-200 text-vibe-purple-700 px-8 py-3 rounded-xl font-semibold hover:bg-vibe-purple-50 hover:border-vibe-purple-300 transition-all duration-300">
-            View All Articles
-          </button>
-        </motion.div>
       </div>
     </section>
   );

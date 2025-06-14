@@ -100,32 +100,10 @@ export function FinalCTA() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold"
+              className="border-white/60 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold hover:border-white/80"
             >
               Already have an account? Login
             </Button>
-          </motion.div>
-
-          {/* Trust indicators */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-12 flex items-center justify-center space-x-8 text-white/70 text-sm"
-          >
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-vibe-mint-400 rounded-full" />
-              <span>Bank-level security</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-vibe-mint-400 rounded-full" />
-              <span>No credit card required</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-vibe-mint-400 rounded-full" />
-              <span>Cancel anytime</span>
-            </div>
           </motion.div>
         </div>
       </div>
