@@ -100,7 +100,7 @@ export function FinalCTA() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white/60 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold hover:border-white/80"
+              className="border-white text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold hover:border-white/80 border-2"
             >
               Already have an account? Login
             </Button>

@@ -95,6 +95,49 @@ export function Footer() {
           </div>
         </motion.div>
 
+        {/* Brand and Social Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center mb-12"
+        >
+          <div className="flex items-center justify-center space-x-2 mb-6">
+            <div className="w-8 h-8 bg-vibe-gradient rounded-lg flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xl font-bold">VibeWealth</span>
+          </div>
+
+          <p className="text-vibe-gray-400 mb-6 max-w-sm mx-auto">
+            The finance app that actually gets Gen Z. Built by young
+            entrepreneurs who understand your financial journey.
+          </p>
+
+          {/* Social Links */}
+          <div className="flex justify-center space-x-4">
+            {socialLinks.map((social, index) => {
+              const Icon = social.icon;
+              return (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  aria-label={social.label}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  whileHover={{ scale: 1.1 }}
+                  className="w-10 h-10 bg-vibe-gray-800 rounded-lg flex items-center justify-center hover:bg-vibe-purple-600 transition-colors duration-300"
+                >
+                  <Icon className="w-5 h-5" />
+                </motion.a>
+              );
+            })}
+          </div>
+        </motion.div>
+
         {/* Bottom Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
