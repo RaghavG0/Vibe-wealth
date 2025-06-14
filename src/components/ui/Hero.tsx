@@ -41,9 +41,18 @@ export function Hero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-vibe-purple-50/30 to-vibe-blue-50/30">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-hero-pattern opacity-60" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+      {/* Graph Background Pattern */}
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='graph' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 0,50 Q 25,30 50,40 T 100,35' stroke='%23a855f7' stroke-width='1' fill='none' opacity='0.3'/%3E%3Cpath d='M 0,70 Q 25,45 50,55 T 100,50' stroke='%230ea5e9' stroke-width='1' fill='none' opacity='0.3'/%3E%3Cpath d='M 0,60 Q 25,80 50,70 T 100,65' stroke='%2314b8a6' stroke-width='1' fill='none' opacity='0.3'/%3E%3Cg stroke='%23e5e7eb' stroke-width='0.5' opacity='0.5'%3E%3Cline x1='0' y1='25' x2='100' y2='25'/%3E%3Cline x1='0' y1='50' x2='100' y2='50'/%3E%3Cline x1='0' y1='75' x2='100' y2='75'/%3E%3Cline x1='25' y1='0' x2='25' y2='100'/%3E%3Cline x1='50' y1='0' x2='50' y2='100'/%3E%3Cline x1='75' y1='0' x2='75' y2='100'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23graph)'/%3E%3C/svg%3E")`,
+          backgroundSize: "200px 200px",
+        }}
+      />
+
+      {/* Light overlay for better text readability */}
+      <div className="absolute inset-0 bg-white/60" />
 
       {/* Floating Icons */}
       {floatingIcons.map(({ Icon, delay, position }, index) => (
