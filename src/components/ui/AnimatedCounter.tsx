@@ -80,7 +80,7 @@ export function AnimatedCounter({
   return (
     <motion.div
       ref={ref}
-      className="text-3xl font-bold hero-text-gradient"
+      className="text-3xl font-bold text-vibe-purple-700"
       initial={{ opacity: 0, scale: 0.5 }}
       animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
       transition={{ duration: 0.5, delay: 0.2 }}

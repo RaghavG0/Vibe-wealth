@@ -101,7 +101,7 @@ export function WhyUs() {
             Why Choose VibeWealth?
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            The <span className="hero-text-gradient">smarter choice</span> for
+            The <span className="text-vibe-purple-700">smarter choice</span> for
             your money
           </h2>
           <p className="text-xl text-vibe-gray-600 max-w-3xl mx-auto">
@@ -154,7 +154,8 @@ export function WhyUs() {
           className="mb-20"
         >
           <h3 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-            What makes us <span className="hero-text-gradient">different</span>
+            What makes us{" "}
+            <span className="text-vibe-purple-700">different</span>
           </h3>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -189,7 +190,8 @@ export function WhyUs() {
           transition={{ duration: 0.6 }}
         >
           <h3 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-            What our <span className="hero-text-gradient">community</span> says
+            What our <span className="text-vibe-purple-700">community</span>{" "}
+            says
           </h3>
 
           <div className="grid md:grid-cols-3 gap-8">

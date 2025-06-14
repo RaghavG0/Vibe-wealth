@@ -116,7 +116,7 @@ const config: Config = {
           "radial-gradient(circle at 30% 20%, rgba(159, 85, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(14, 165, 233, 0.1) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(20, 184, 166, 0.1) 0%, transparent 50%)",
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui"],
+        sans: ["Poppins", "Inter", "ui-sans-serif", "system-ui"],
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

@@ -132,7 +132,7 @@ export function BlogCarousel() {
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
             Money tips that don't{" "}
-            <span className="hero-text-gradient">put you to sleep</span>
+            <span className="text-vibe-purple-700">put you to sleep</span>
           </h2>
           <p className="text-xl text-vibe-gray-600 max-w-3xl mx-auto">
             Fresh perspectives on finance, written by Gen Z for Gen Z. No

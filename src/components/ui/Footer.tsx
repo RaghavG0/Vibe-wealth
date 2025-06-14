@@ -72,7 +72,7 @@ export function Footer() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-2xl sm:text-3xl font-bold mb-4">
-                Stay in the <span className="hero-text-gradient">loop</span>
+                Stay in the <span className="text-vibe-purple-700">loop</span>
               </h3>
               <p className="text-vibe-gray-400 text-lg">
                 Get weekly money tips, exclusive content, and early access to

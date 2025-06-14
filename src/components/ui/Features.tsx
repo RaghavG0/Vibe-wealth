@@ -104,7 +104,7 @@ export function Features() {
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
             Everything you need to{" "}
-            <span className="hero-text-gradient">master money</span>
+            <span className="text-vibe-purple-700">master money</span>
           </h2>
           <p className="text-xl text-vibe-gray-600 max-w-3xl mx-auto">
             Built specifically for Gen Z with the features that actually matter.
