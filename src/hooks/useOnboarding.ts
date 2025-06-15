@@ -69,10 +69,16 @@ export const useOnboarding = () => {
   }, []);
 
   const markStepCompleted = useCallback((step: number) => {
-    setData((prev) => ({
-      ...prev,
-      completedSteps: [...new Set([...prev.completedSteps, step])],
-    }));
+    console.log("markStepCompleted called with step:", step);
+    setData((prev) => {
+      const newCompletedSteps = [...new Set([...prev.completedSteps, step])];
+      console.log("Previous completed steps:", prev.completedSteps);
+      console.log("New completed steps:", newCompletedSteps);
+      return {
+        ...prev,
+        completedSteps: newCompletedSteps,
+      };
+    });
   }, []);
 
   const isStepCompleted = useCallback(
