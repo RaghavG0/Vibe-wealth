@@ -81,6 +81,16 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   );
   const progressPercentage = (maxProgress / (totalSteps - 1)) * 100;
 
+  // Debug logging to help troubleshoot
+  React.useEffect(() => {
+    console.log("ProgressBar state:", {
+      currentStep,
+      completedSteps,
+      maxProgress,
+      progressPercentage,
+    });
+  }, [currentStep, completedSteps, maxProgress, progressPercentage]);
+
   return (
     <div className="w-full max-w-2xl mx-auto mb-8">
       {/* Progress bar */}
