@@ -28,6 +28,7 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Password strength validation
@@ -124,6 +125,7 @@ export default function SignUp() {
     // Simulate account creation process
     setTimeout(() => {
       setIsLoading(false);
+      setShowSuccess(true);
 
       // Store user data in sessionStorage for demo purposes
       sessionStorage.setItem(
@@ -136,11 +138,10 @@ export default function SignUp() {
         }),
       );
 
-      // Clear the toast flag so it shows on setup page
-      sessionStorage.removeItem("onboarding-toast-shown");
-
-      // Redirect to onboarding setup page
-      navigate("/onboarding/setup");
+      // Wait a moment to show success, then redirect
+      setTimeout(() => {
+        navigate("/onboarding/setup");
+      }, 1500);
     }, 2000);
   };
 
@@ -549,10 +550,19 @@ export default function SignUp() {
               {/* Submit Button */}
               <Button
                 type="submit"
-                disabled={isLoading}
-                className="w-full bg-vibe-gradient hover:opacity-90 text-white py-3 rounded-xl font-semibold transition-all duration-300 disabled:opacity-50"
+                disabled={isLoading || showSuccess}
+                className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  showSuccess
+                    ? "bg-green-600 hover:bg-green-600"
+                    : "bg-vibe-gradient hover:opacity-90"
+                } text-white disabled:opacity-50`}
               >
-                {isLoading ? (
+                {showSuccess ? (
+                  <div className="flex items-center justify-center space-x-2">
+                    <Check className="w-5 h-5" />
+                    <span>Account Created! Redirecting...</span>
+                  </div>
+                ) : isLoading ? (
                   <div className="flex items-center justify-center space-x-2">
                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     <span>Creating Account...</span>
