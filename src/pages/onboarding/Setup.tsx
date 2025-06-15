@@ -11,8 +11,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SuccessToast } from "@/components/ui/SuccessToast";
 import { useOnboarding } from "@/hooks/useOnboarding";
+import { CheckCircle, Sparkles } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const countries = [
   { value: "US", label: "🇺🇸 United States" },
@@ -47,17 +48,33 @@ export const Setup: React.FC = () => {
   const navigate = useNavigate();
   const { data, updateData, setCurrentStep, markStepCompleted, validateStep } =
     useOnboarding();
-  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
+  const [userData, setUserData] = useState<any>(null);
 
   useEffect(() => {
     setCurrentStep(1);
-    // Show success toast only on first visit (simulating after signup)
-    const hasShownToast = sessionStorage.getItem("onboarding-toast-shown");
-    if (!hasShownToast) {
-      setShowSuccessToast(true);
-      sessionStorage.setItem("onboarding-toast-shown", "true");
+
+    // Check if user just signed up
+    const storedUserData = sessionStorage.getItem("userData");
+    if (storedUserData) {
+      const user = JSON.parse(storedUserData);
+      setUserData(user);
+
+      // Pre-fill form with signup data
+      updateData({
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+      });
+
+      // Show welcome message
+      setShowWelcomeMessage(true);
+
+      // Hide welcome message after 4 seconds
+      setTimeout(() => {
+        setShowWelcomeMessage(false);
+      }, 4000);
     }
-  }, [setCurrentStep]);
+  }, [setCurrentStep, updateData]);
 
   const handleInputChange = (field: string, value: string) => {
     updateData({ [field]: value });
@@ -78,11 +95,34 @@ export const Setup: React.FC = () => {
 
   return (
     <>
-      <SuccessToast
-        message="Signed up successfully! Welcome to VibeWealth!"
-        isVisible={showSuccessToast}
-        onClose={() => setShowSuccessToast(false)}
-      />
+      {/* Welcome Message Banner */}
+      {showWelcomeMessage && (
+        <div
+          className={cn(
+            "fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-green-600 to-emerald-600 text-white p-4 shadow-lg transition-all duration-500 ease-out",
+            showWelcomeMessage
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-full opacity-0",
+          )}
+        >
+          <div className="max-w-lg mx-auto flex items-center justify-center gap-3">
+            <div className="flex-shrink-0">
+              <CheckCircle className="w-6 h-6" />
+            </div>
+            <div className="text-center">
+              <p className="font-semibold">
+                🎉 Welcome to VibeWealth, {userData?.firstName || "there"}!
+              </p>
+              <p className="text-sm text-green-100">
+                Account created successfully. Let's set up your profile!
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <Sparkles className="w-5 h-5 animate-pulse" />
+            </div>
+          </div>
+        </div>
+      )}
 
       <OnboardingLayout
         currentStep={1}
@@ -92,6 +132,7 @@ export const Setup: React.FC = () => {
         isNextDisabled={!isFormValid}
         showSkip={true}
         onSkip={() => navigate("/onboarding/preferences")}
+        className={cn(showWelcomeMessage && "pt-20")}
       >
         <div className="text-center mb-8">
           <h1 className="text-2xl font-semibold mb-2">
