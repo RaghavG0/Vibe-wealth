@@ -80,6 +80,7 @@ export const Goals: React.FC = () => {
   const [showCustomInput, setShowCustomInput] = useState(false);
 
   useEffect(() => {
+    // Always set current step to 3 when on goals page
     setCurrentStep(3);
   }, [setCurrentStep]);
 
