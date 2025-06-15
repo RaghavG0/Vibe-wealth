@@ -90,9 +90,25 @@ export const Setup: React.FC = () => {
   };
 
   const handleNext = () => {
+    console.log("Setup handleNext called", {
+      isValid: validateStep(1),
+      data: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        age: data.age,
+        occupation: data.occupation,
+        country: data.country,
+      },
+      completedSteps: data.completedSteps,
+    });
+
     if (validateStep(1)) {
+      console.log("Marking step 1 as completed");
       markStepCompleted(1);
+      console.log("Completed steps after marking:", data.completedSteps);
       navigate("/onboarding/preferences");
+    } else {
+      console.log("Validation failed for step 1");
     }
   };
 
