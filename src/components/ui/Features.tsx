@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   Target,
   Bot,
@@ -62,6 +63,8 @@ const features = [
 ];
 
 export function Features() {
+  const navigate = useNavigate();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -164,7 +167,10 @@ export function Features() {
           <p className="text-vibe-gray-600 mb-6">
             Ready to experience the future of personal finance?
           </p>
-          <button className="bg-vibe-gradient text-white px-8 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity shadow-lg hover:shadow-xl">
+          <button
+            onClick={() => navigate("/signup")}
+            className="bg-vibe-gradient text-white px-8 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity shadow-lg hover:shadow-xl"
+          >
             Try All Features Free
           </button>
         </motion.div>
