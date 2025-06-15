@@ -114,14 +114,6 @@ export const useOnboarding = () => {
     },
     [data],
   );
-        case 3:
-          return data.goals.length > 0;
-        case 4:
-          return true;
-        default:
-          return false;
-      }
-    },
     [data],
   );
 
