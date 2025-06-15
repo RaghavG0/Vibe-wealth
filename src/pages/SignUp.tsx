@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Eye,
   EyeOff,
@@ -112,6 +112,8 @@ export default function SignUp() {
     return Object.keys(newErrors).length === 0;
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -119,11 +121,26 @@ export default function SignUp() {
 
     setIsLoading(true);
 
-    // Dummy registration logic
+    // Simulate account creation process
     setTimeout(() => {
-      alert("Account created successfully! (Demo)");
       setIsLoading(false);
-      // In a real app, you'd redirect to dashboard or login
+
+      // Store user data in sessionStorage for demo purposes
+      sessionStorage.setItem(
+        "userData",
+        JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          signupCompleted: true,
+        }),
+      );
+
+      // Clear the toast flag so it shows on setup page
+      sessionStorage.removeItem("onboarding-toast-shown");
+
+      // Redirect to onboarding setup page
+      navigate("/onboarding/setup");
     }, 2000);
   };
 
