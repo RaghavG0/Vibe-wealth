@@ -37,30 +37,6 @@ const stats = [
   },
 ];
 
-const testimonials = [
-  {
-    quote:
-      "Finally, a finance app that doesn't make me feel like I need a business degree! VibeWealth actually gets Gen Z.",
-    author: "Alex M.",
-    role: "College Student",
-    avatar: "👨‍🎓",
-  },
-  {
-    quote:
-      "The AI chatbot is like having a financial advisor who speaks my language. No more boring bank apps!",
-    author: "Zoe L.",
-    role: "Content Creator",
-    avatar: "👩‍💻",
-  },
-  {
-    quote:
-      "I saved $1,200 in 3 months using their dream tracker. The memes make budgeting actually fun lol",
-    author: "Jordan K.",
-    role: "Recent Grad",
-    avatar: "🎓",
-  },
-];
-
 const differentiators = [
   {
     title: "Built for Gen Z",
