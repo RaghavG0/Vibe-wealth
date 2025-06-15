@@ -82,9 +82,7 @@ export const Setup: React.FC = () => {
   }, [setCurrentStep, updateData]);
 
   const handleInputChange = (field: string, value: string) => {
-    console.log(`Input changed: ${field} = "${value}"`);
     updateData({ [field]: value });
-    console.log("Updated data:", { [field]: value, currentData: data });
   };
 
   const handleImageChange = (file: File | null) => {
@@ -183,52 +181,6 @@ export const Setup: React.FC = () => {
           <p className="text-gray-400">
             First things first, let's set up your profile.
           </p>
-        </div>
-
-        {/* Debug Section - Remove in production */}
-        <div className="mb-4 p-4 bg-yellow-900/20 border border-yellow-600 rounded-lg">
-          <p className="text-yellow-400 text-sm mb-2">
-            Debug: Completed steps: {JSON.stringify(data.completedSteps)}
-          </p>
-          <p className="text-yellow-400 text-xs mb-2">
-            Form Data: firstName="{data.firstName}", lastName="{data.lastName}",
-            age="{data.age}", occupation="{data.occupation}", country="
-            {data.country}"
-          </p>
-          <p className="text-yellow-400 text-xs mb-2">
-            Validation: {validateStep(1) ? "✅ VALID" : "❌ INVALID"} | Continue
-            Button: {!validateStep(1) ? "DISABLED" : "ENABLED"}
-          </p>
-          <button
-            onClick={() => {
-              console.log("Debug: Manually marking step 1 completed");
-              markStepCompleted(1);
-            }}
-            className="px-3 py-1 bg-yellow-600 text-white rounded text-xs mr-2"
-          >
-            Test: Mark Step 1 Complete
-          </button>
-          <button
-            onClick={() => {
-              console.log("Debug: Current form validation:", validateStep(1));
-              console.log("Debug: Current form data:", {
-                firstName: data.firstName,
-                lastName: data.lastName,
-                age: data.age,
-                occupation: data.occupation,
-                country: data.country,
-              });
-            }}
-            className="px-3 py-1 bg-blue-600 text-white rounded text-xs mr-2"
-          >
-            Test: Check Validation
-          </button>
-          <button
-            onClick={handleNext}
-            className="px-3 py-1 bg-green-600 text-white rounded text-xs"
-          >
-            Test: Trigger handleNext
-          </button>
         </div>
 
         <div className="space-y-6">

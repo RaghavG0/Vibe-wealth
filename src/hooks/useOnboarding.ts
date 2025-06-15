@@ -45,12 +45,7 @@ export const useOnboarding = () => {
   const [data, setData] = useState<OnboardingData>(initialData);
 
   const updateData = useCallback((updates: Partial<OnboardingData>) => {
-    console.log("updateData called with:", updates);
-    setData((prev) => {
-      const newData = { ...prev, ...updates };
-      console.log("Data updated from:", prev, "to:", newData);
-      return newData;
-    });
+    setData((prev) => ({ ...prev, ...updates }));
   }, []);
 
   const setCurrentStep = useCallback((step: number) => {
@@ -74,16 +69,10 @@ export const useOnboarding = () => {
   }, []);
 
   const markStepCompleted = useCallback((step: number) => {
-    console.log("markStepCompleted called with step:", step);
-    setData((prev) => {
-      const newCompletedSteps = [...new Set([...prev.completedSteps, step])];
-      console.log("Previous completed steps:", prev.completedSteps);
-      console.log("New completed steps:", newCompletedSteps);
-      return {
-        ...prev,
-        completedSteps: newCompletedSteps,
-      };
-    });
+    setData((prev) => ({
+      ...prev,
+      completedSteps: [...new Set([...prev.completedSteps, step])],
+    }));
   }, []);
 
   const isStepCompleted = useCallback(
@@ -99,17 +88,15 @@ export const useOnboarding = () => {
 
   const validateStep = useCallback(
     (step: number): boolean => {
-      console.log("Validating step", step, "with data:", data);
       switch (step) {
         case 1:
-          // Temporarily more lenient - just require first and last name
-          const isValid = !!(data.firstName && data.lastName);
-          console.log("Step 1 validation:", {
-            firstName: data.firstName,
-            lastName: data.lastName,
-            isValid,
-          });
-          return isValid;
+          return !!(
+            data.firstName &&
+            data.lastName &&
+            data.age &&
+            data.occupation &&
+            data.country
+          );
         case 2:
           return !!(
             data.colorTheme &&
@@ -117,6 +104,16 @@ export const useOnboarding = () => {
             data.currency &&
             data.dateFormat
           );
+        case 3:
+          return data.goals.length > 0;
+        case 4:
+          return true;
+        default:
+          return false;
+      }
+    },
+    [data],
+  );
         case 3:
           return data.goals.length > 0;
         case 4:
