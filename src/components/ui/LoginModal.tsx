@@ -45,24 +45,27 @@ export function LoginModal({
     alert("Google OAuth would be implemented here");
   };
 
-  const handleEscapeKey = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      onClose();
-    }
-  };
-
-  // Add event listener for escape key
+  // Add event listener for escape key and manage body scroll
   useState(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
     if (isOpen) {
-      document.addEventListener("keydown", handleEscapeKey);
+      document.addEventListener("keydown", handleKeydown);
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscapeKey);
+      document.removeEventListener("keydown", handleKeydown);
       document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
     };
   });
 
@@ -74,11 +77,11 @@ export function LoginModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 min-h-screen"
           onClick={onClose}
         >
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-black/90 backdrop-blur-md" />
 
           {/* Modal */}
           <motion.div
@@ -86,7 +89,7 @@ export function LoginModal({
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative w-full max-w-md"
+            className="relative w-full max-w-md mx-auto my-8 max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="bg-gray-900 rounded-2xl border border-gray-800 shadow-2xl overflow-hidden">
