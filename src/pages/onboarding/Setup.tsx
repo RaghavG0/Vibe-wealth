@@ -186,8 +186,16 @@ export const Setup: React.FC = () => {
         {/* Debug Section - Remove in production */}
         <div className="mb-4 p-4 bg-yellow-900/20 border border-yellow-600 rounded-lg">
           <p className="text-yellow-400 text-sm mb-2">
-            Debug: Current completed steps:{" "}
-            {JSON.stringify(data.completedSteps)}
+            Debug: Completed steps: {JSON.stringify(data.completedSteps)}
+          </p>
+          <p className="text-yellow-400 text-xs mb-2">
+            Form Data: firstName="{data.firstName}", lastName="{data.lastName}",
+            age="{data.age}", occupation="{data.occupation}", country="
+            {data.country}"
+          </p>
+          <p className="text-yellow-400 text-xs mb-2">
+            Validation: {validateStep(1) ? "✅ VALID" : "❌ INVALID"} | Continue
+            Button: {!validateStep(1) ? "DISABLED" : "ENABLED"}
           </p>
           <button
             onClick={() => {
@@ -204,11 +212,20 @@ export const Setup: React.FC = () => {
               console.log("Debug: Current form data:", {
                 firstName: data.firstName,
                 lastName: data.lastName,
+                age: data.age,
+                occupation: data.occupation,
+                country: data.country,
               });
             }}
-            className="px-3 py-1 bg-blue-600 text-white rounded text-xs"
+            className="px-3 py-1 bg-blue-600 text-white rounded text-xs mr-2"
           >
             Test: Check Validation
+          </button>
+          <button
+            onClick={handleNext}
+            className="px-3 py-1 bg-green-600 text-white rounded text-xs"
+          >
+            Test: Trigger handleNext
           </button>
         </div>
 
