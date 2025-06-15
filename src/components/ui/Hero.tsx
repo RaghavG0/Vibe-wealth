@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Sparkles, TrendingUp, DollarSign } from "lucide-react";
 import { Button } from "./button";
+import { LoginModal } from "./LoginModal";
 
 export function Hero() {
   const navigate = useNavigate();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -125,10 +128,10 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() => navigate("/signup")}
+                onClick={() => setIsLoginModalOpen(true)}
                 className="border-vibe-purple-200 text-vibe-purple-700 hover:bg-vibe-purple-50 group"
               >
-                <span className="mr-2">Try All Features Free</span>
+                <span className="mr-2">Login</span>
                 <ArrowRight className="w-5 h-5 -rotate-45 group-hover:scale-125 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
               </Button>
             </motion.div>
@@ -214,6 +217,16 @@ export function Hero() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Login Modal */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSignUpClick={() => {
+          setIsLoginModalOpen(false);
+          navigate("/signup");
+        }}
+      />
     </section>
   );
 }
