@@ -94,15 +94,17 @@ export const useOnboarding = () => {
 
   const validateStep = useCallback(
     (step: number): boolean => {
+      console.log("Validating step", step, "with data:", data);
       switch (step) {
         case 1:
-          return !!(
-            data.firstName &&
-            data.lastName &&
-            data.age &&
-            data.occupation &&
-            data.country
-          );
+          // Temporarily more lenient - just require first and last name
+          const isValid = !!(data.firstName && data.lastName);
+          console.log("Step 1 validation:", {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            isValid,
+          });
+          return isValid;
         case 2:
           return !!(
             data.colorTheme &&
