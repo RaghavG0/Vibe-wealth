@@ -183,6 +183,35 @@ export const Setup: React.FC = () => {
           </p>
         </div>
 
+        {/* Debug Section - Remove in production */}
+        <div className="mb-4 p-4 bg-yellow-900/20 border border-yellow-600 rounded-lg">
+          <p className="text-yellow-400 text-sm mb-2">
+            Debug: Current completed steps:{" "}
+            {JSON.stringify(data.completedSteps)}
+          </p>
+          <button
+            onClick={() => {
+              console.log("Debug: Manually marking step 1 completed");
+              markStepCompleted(1);
+            }}
+            className="px-3 py-1 bg-yellow-600 text-white rounded text-xs mr-2"
+          >
+            Test: Mark Step 1 Complete
+          </button>
+          <button
+            onClick={() => {
+              console.log("Debug: Current form validation:", validateStep(1));
+              console.log("Debug: Current form data:", {
+                firstName: data.firstName,
+                lastName: data.lastName,
+              });
+            }}
+            className="px-3 py-1 bg-blue-600 text-white rounded text-xs"
+          >
+            Test: Check Validation
+          </button>
+        </div>
+
         <div className="space-y-6">
           {/* Profile Image Upload */}
           <div className="flex justify-center">
