@@ -77,6 +77,7 @@ export const Preferences: React.FC = () => {
   const [selectedDateFormat, setSelectedDateFormat] = useState(data.dateFormat);
 
   useEffect(() => {
+    // Always set current step to 2 when on preferences page
     setCurrentStep(2);
   }, [setCurrentStep]);
 
