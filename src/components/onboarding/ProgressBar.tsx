@@ -50,12 +50,12 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({
     >
       <div
         className={cn(
-          "flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-300 group",
+          "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300 group",
           isClickable ? "cursor-pointer hover:scale-110" : "cursor-default",
           isCompleted && !isHovered
-            ? "bg-green-500 border-green-500 text-white shadow-lg"
+            ? "bg-green-500 border-green-500 text-white shadow-lg shadow-green-500/50"
             : isCurrent
-              ? "border-vibe-purple-500 bg-vibe-purple-500/10 text-vibe-purple-400 shadow-lg shadow-vibe-purple-500/25"
+              ? "border-vibe-purple-500 bg-vibe-purple-500/20 text-vibe-purple-400 shadow-lg shadow-vibe-purple-500/25"
               : isCompleted && isHovered
                 ? "border-gray-500 bg-gray-700 text-gray-300"
                 : "border-gray-600 bg-gray-800 text-gray-400",
@@ -66,9 +66,9 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({
         title={isClickable ? `Go to ${stepName}` : stepName}
       >
         {isCompleted && !isHovered ? (
-          <Check className="w-4 h-4 font-bold" />
+          <Check className="w-5 h-5 font-bold stroke-2" />
         ) : (
-          <span className="text-sm font-medium">{stepNumber}</span>
+          <span className="text-sm font-semibold">{stepNumber}</span>
         )}
       </div>
       <span
