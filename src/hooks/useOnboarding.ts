@@ -114,8 +114,6 @@ export const useOnboarding = () => {
     },
     [data],
   );
-    [data],
-  );
 
   return {
     data,
