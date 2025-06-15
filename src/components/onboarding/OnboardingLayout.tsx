@@ -12,6 +12,7 @@ interface OnboardingLayoutProps {
   completedSteps: number[];
   onNext?: () => void;
   onBack?: () => void;
+  onStepClick?: (step: number) => void;
   isNextDisabled?: boolean;
   nextButtonText?: string;
   showSkip?: boolean;
@@ -26,6 +27,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   completedSteps,
   onNext,
   onBack,
+  onStepClick,
   isNextDisabled = false,
   nextButtonText = "Continue",
   showSkip = false,
@@ -61,6 +63,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           currentStep={currentStep}
           totalSteps={totalSteps}
           completedSteps={completedSteps}
+          onStepClick={onStepClick}
         />
       </div>
 
