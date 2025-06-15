@@ -46,6 +46,13 @@ export function Header() {
                 {item.name}
               </a>
             ))}
+            {/* Temporary test link */}
+            <button
+              onClick={() => navigate("/onboarding/setup")}
+              className="text-red-600 hover:text-red-800 transition-colors duration-200 font-medium border border-red-600 px-2 py-1 rounded text-sm"
+            >
+              Test Onboarding
+            </button>
           </nav>
 
           {/* Desktop CTAs */}
