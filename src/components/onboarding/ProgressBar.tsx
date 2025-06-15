@@ -6,6 +6,7 @@ interface ProgressBarProps {
   currentStep: number;
   totalSteps: number;
   completedSteps: number[];
+  onStepClick?: (step: number) => void;
 }
 
 const stepNames = ["Setup", "Preferences", "Goals", "Welcome"];
@@ -17,6 +18,7 @@ interface StepIndicatorProps {
   isCurrent: boolean;
   isFirst: boolean;
   isLast: boolean;
+  onClick?: (step: number) => void;
 }
 
 const StepIndicator: React.FC<StepIndicatorProps> = ({
@@ -26,8 +28,18 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({
   isCurrent,
   isFirst,
   isLast,
+  onClick,
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
+
+  // Can only click on completed steps or current step
+  const isClickable = isCompleted || isCurrent;
+
+  const handleClick = () => {
+    if (isClickable && onClick) {
+      onClick(stepNumber);
+    }
+  };
 
   return (
     <div
@@ -38,20 +50,23 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({
     >
       <div
         className={cn(
-          "flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-300 cursor-pointer group",
+          "flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-300 group",
+          isClickable ? "cursor-pointer hover:scale-110" : "cursor-default",
           isCompleted && !isHovered
-            ? "bg-green-500 border-green-500 text-white"
+            ? "bg-green-500 border-green-500 text-white shadow-lg"
             : isCurrent
-              ? "border-vibe-purple-500 bg-gray-900 text-vibe-purple-400"
+              ? "border-vibe-purple-500 bg-vibe-purple-500/10 text-vibe-purple-400 shadow-lg shadow-vibe-purple-500/25"
               : isCompleted && isHovered
-                ? "border-gray-600 bg-gray-800 text-gray-400"
+                ? "border-gray-500 bg-gray-700 text-gray-300"
                 : "border-gray-600 bg-gray-800 text-gray-400",
         )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={handleClick}
+        title={isClickable ? `Go to ${stepName}` : stepName}
       >
         {isCompleted && !isHovered ? (
-          <Check className="w-4 h-4" />
+          <Check className="w-4 h-4 font-bold" />
         ) : (
           <span className="text-sm font-medium">{stepNumber}</span>
         )}
@@ -59,7 +74,11 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({
       <span
         className={cn(
           "text-xs font-medium transition-colors duration-300",
-          isCurrent || isCompleted ? "text-white" : "text-gray-400",
+          isCurrent
+            ? "text-vibe-purple-400 font-semibold"
+            : isCompleted
+              ? "text-green-400 font-medium"
+              : "text-gray-400",
         )}
       >
         {stepName}
@@ -72,6 +91,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   currentStep,
   totalSteps,
   completedSteps,
+  onStepClick,
 }) => {
   // Simplified calculation: show progress based on the furthest step reached
   // This includes the current step and any completed steps
@@ -85,8 +105,19 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       completedSteps,
       furthestStep,
       progressPercentage,
+      stepStates: Array.from({ length: totalSteps }, (_, index) => ({
+        step: index + 1,
+        isCompleted: completedSteps.includes(index + 1),
+        isCurrent: index + 1 === currentStep,
+      })),
     });
-  }, [currentStep, completedSteps, furthestStep, progressPercentage]);
+  }, [
+    currentStep,
+    completedSteps,
+    furthestStep,
+    progressPercentage,
+    totalSteps,
+  ]);
 
   return (
     <div className="w-full max-w-2xl mx-auto mb-8">
@@ -116,6 +147,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
               isCurrent={isCurrent}
               isFirst={stepNumber === 1}
               isLast={stepNumber === totalSteps}
+              onClick={onStepClick}
             />
           );
         })}
