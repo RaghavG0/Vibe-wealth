@@ -1,13 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  Shield,
-  Users,
-  Award,
-  Zap,
-  Star,
-  Quote,
-  CheckCircle,
-} from "lucide-react";
+import { Shield, Users, Award, Zap, Star, CheckCircle } from "lucide-react";
 import { AnimatedCounter } from "./AnimatedCounter";
 
 const stats = [
