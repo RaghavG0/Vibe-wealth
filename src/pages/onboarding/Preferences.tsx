@@ -96,6 +96,22 @@ export const Preferences: React.FC = () => {
     navigate("/onboarding/setup");
   };
 
+  const handleStepClick = (step: number) => {
+    const routes = [
+      "/onboarding/setup",
+      "/onboarding/preferences",
+      "/onboarding/goals",
+      "/onboarding/welcome",
+    ];
+
+    if (step === 2) {
+      // Already on preferences page
+      return;
+    }
+
+    navigate(routes[step - 1]);
+  };
+
   const isFormValid = validateStep(2);
 
   const formatCurrencyExample = (currency: string) => {
@@ -119,6 +135,7 @@ export const Preferences: React.FC = () => {
       completedSteps={data.completedSteps}
       onNext={handleNext}
       onBack={handleBack}
+      onStepClick={handleStepClick}
       isNextDisabled={!isFormValid}
       showSkip={true}
       onSkip={() => navigate("/onboarding/goals")}
