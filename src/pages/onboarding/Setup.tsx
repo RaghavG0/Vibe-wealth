@@ -82,7 +82,9 @@ export const Setup: React.FC = () => {
   }, [setCurrentStep, updateData]);
 
   const handleInputChange = (field: string, value: string) => {
+    console.log(`Input changed: ${field} = "${value}"`);
     updateData({ [field]: value });
+    console.log("Updated data:", { [field]: value, currentData: data });
   };
 
   const handleImageChange = (file: File | null) => {
