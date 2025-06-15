@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight, Sparkles, CheckCircle } from "lucide-react";
 import { Button } from "./button";
 
@@ -10,6 +11,8 @@ const benefits = [
 ];
 
 export function FinalCTA() {
+  const navigate = useNavigate();
+
   return (
     <section className="py-20 relative overflow-hidden">
       {/* Background */}
@@ -91,6 +94,7 @@ export function FinalCTA() {
           >
             <Button
               size="lg"
+              onClick={() => navigate("/signup")}
               className="bg-white text-vibe-purple-700 hover:bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-300 group px-8 py-4 text-lg font-semibold"
             >
               Get Started Free
@@ -100,6 +104,7 @@ export function FinalCTA() {
             <Button
               size="lg"
               variant="outline"
+              onClick={() => navigate("/")}
               className="border-white text-white bg-transparent hover:bg-white/10 hover:text-white backdrop-blur-sm px-8 py-4 text-lg font-semibold hover:border-white/80 border-2"
             >
               Already have an account? Login

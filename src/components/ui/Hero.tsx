@@ -1,15 +1,11 @@
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Play,
-  Sparkles,
-  TrendingUp,
-  DollarSign,
-  Target,
-} from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight, Sparkles, TrendingUp, DollarSign } from "lucide-react";
 import { Button } from "./button";
 
 export function Hero() {
+  const navigate = useNavigate();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -119,6 +115,7 @@ export function Hero() {
             >
               <Button
                 size="lg"
+                onClick={() => navigate("/signup")}
                 className="bg-vibe-gradient hover:opacity-90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 group"
               >
                 Get Started Free
@@ -128,9 +125,10 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
+                onClick={() => navigate("/signup")}
                 className="border-vibe-purple-200 text-vibe-purple-700 hover:bg-vibe-purple-50 group"
               >
-                <span className="mr-2">Login</span>
+                <span className="mr-2">Try All Features Free</span>
                 <ArrowRight className="w-5 h-5 -rotate-45 group-hover:scale-125 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
               </Button>
             </motion.div>

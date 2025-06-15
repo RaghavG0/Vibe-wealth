@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, TrendingUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "./button";
+import { LoginModal } from "./LoginModal";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navItems = [
     { name: "Features", href: "#features" },
@@ -48,11 +52,15 @@ export function Header() {
           <div className="hidden md:flex items-center space-x-4">
             <Button
               variant="ghost"
+              onClick={() => setIsLoginModalOpen(true)}
               className="text-vibe-gray-600 hover:text-vibe-purple-600 hover:bg-vibe-purple-50"
             >
               Login
             </Button>
-            <Button className="bg-vibe-gradient hover:opacity-90 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+            <Button
+              onClick={() => navigate("/signup")}
+              className="bg-vibe-gradient hover:opacity-90 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+            >
               Get Started
             </Button>
           </div>
@@ -92,11 +100,21 @@ export function Header() {
               <div className="flex flex-col space-y-2 px-3 pt-4">
                 <Button
                   variant="ghost"
+                  onClick={() => {
+                    setIsLoginModalOpen(true);
+                    setIsOpen(false);
+                  }}
                   className="justify-start text-vibe-gray-600 hover:text-vibe-purple-600 hover:bg-vibe-purple-50"
                 >
                   Login
                 </Button>
-                <Button className="bg-vibe-gradient text-white shadow-lg">
+                <Button
+                  onClick={() => {
+                    navigate("/signup");
+                    setIsOpen(false);
+                  }}
+                  className="bg-vibe-gradient text-white shadow-lg"
+                >
                   Get Started
                 </Button>
               </div>
@@ -104,6 +122,16 @@ export function Header() {
           </motion.div>
         )}
       </div>
+
+      {/* Login Modal */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSignUpClick={() => {
+          setIsLoginModalOpen(false);
+          navigate("/signup");
+        }}
+      />
     </motion.header>
   );
 }
