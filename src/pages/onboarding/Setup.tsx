@@ -96,6 +96,24 @@ export const Setup: React.FC = () => {
     }
   };
 
+  const handleStepClick = (step: number) => {
+    // Only allow navigation to completed steps or current step
+    const routes = [
+      "/onboarding/setup",
+      "/onboarding/preferences",
+      "/onboarding/goals",
+      "/onboarding/welcome",
+    ];
+
+    if (step <= 1) {
+      // Already on setup page
+      return;
+    }
+
+    // Can navigate to any step if we have the data for it
+    navigate(routes[step - 1]);
+  };
+
   const isFormValid = validateStep(1);
 
   return (
@@ -134,6 +152,7 @@ export const Setup: React.FC = () => {
         totalSteps={4}
         completedSteps={data.completedSteps}
         onNext={handleNext}
+        onStepClick={handleStepClick}
         isNextDisabled={!isFormValid}
         showSkip={true}
         onSkip={() => navigate("/onboarding/preferences")}
