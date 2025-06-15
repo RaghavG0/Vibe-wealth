@@ -68,24 +68,44 @@ export default function SignUp() {
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.firstName.trim())
+    // Validate first name
+    if (!formData.firstName.trim()) {
       newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
+    }
+
+    // Validate last name
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Last name is required";
+    }
+
+    // Validate email with proper format
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+    } else if (
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)
+    ) {
+      newErrors.email =
+        "Please enter a valid email address (e.g., user@example.com)";
     }
+
+    // Validate password
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (passwordStrength.score < 5) {
       newErrors.password = "Please meet all password requirements";
     }
-    if (formData.password !== formData.confirmPassword) {
+
+    // Validate confirm password
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword = "Please confirm your password";
+    } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match";
     }
+
+    // Validate terms and conditions (REQUIRED)
     if (!formData.agreeToTerms) {
-      newErrors.agreeToTerms = "You must agree to the terms";
+      newErrors.agreeToTerms =
+        "You must agree to the Terms of Service and Privacy Policy to create an account";
     }
 
     setErrors(newErrors);
@@ -140,7 +160,7 @@ export default function SignUp() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col justify-center px-12 py-12">
+        <div className="relative z-10 flex flex-col justify-center items-center text-center px-12 py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -186,28 +206,6 @@ export default function SignUp() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Quote */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mt-12 p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20"
-            >
-              <p className="text-white/90 italic mb-3">
-                "VibeWealth made budgeting actually fun. I saved $2,000 in just
-                3 months!"
-              </p>
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-vibe-gradient rounded-full flex items-center justify-center text-sm">
-                  💜
-                </div>
-                <div>
-                  <p className="text-white font-medium text-sm">Alex M.</p>
-                  <p className="text-white/60 text-xs">College Student</p>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </motion.div>
@@ -264,6 +262,7 @@ export default function SignUp() {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       placeholder="John"
+                      required
                       className={`w-full pl-10 pr-4 py-3 bg-gray-800 border rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
                         errors.firstName
                           ? "border-red-500 focus:ring-red-500"
@@ -288,6 +287,7 @@ export default function SignUp() {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       placeholder="Doe"
+                      required
                       className={`w-full pl-10 pr-4 py-3 bg-gray-800 border rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
                         errors.lastName
                           ? "border-red-500 focus:ring-red-500"
@@ -314,6 +314,9 @@ export default function SignUp() {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="you@example.com"
+                    required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    title="Please enter a valid email address"
                     className={`w-full pl-10 pr-4 py-3 bg-gray-800 border rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
                       errors.email
                         ? "border-red-500 focus:ring-red-500"
@@ -339,6 +342,8 @@ export default function SignUp() {
                     value={formData.password}
                     onChange={handleInputChange}
                     placeholder="Create a strong password"
+                    required
+                    minLength={8}
                     className={`w-full pl-10 pr-12 py-3 bg-gray-800 border rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
                       errors.password
                         ? "border-red-500 focus:ring-red-500"
@@ -426,6 +431,8 @@ export default function SignUp() {
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     placeholder="Confirm your password"
+                    required
+                    minLength={8}
                     className={`w-full pl-10 pr-12 py-3 bg-gray-800 border rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
                       errors.confirmPassword
                         ? "border-red-500 focus:ring-red-500"
@@ -484,6 +491,7 @@ export default function SignUp() {
                     name="agreeToTerms"
                     checked={formData.agreeToTerms}
                     onChange={handleInputChange}
+                    required
                     className="mt-1 w-4 h-4 text-vibe-purple-500 bg-gray-800 border-gray-600 rounded focus:ring-vibe-purple-500 focus:ring-2"
                   />
                   <label className="text-sm text-gray-300">
