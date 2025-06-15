@@ -15,7 +15,9 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   totalSteps,
   completedSteps,
 }) => {
-  const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
+  // Calculate progress based on completed steps, not just current step
+  const completedCount = completedSteps.length;
+  const progressPercentage = (completedCount / totalSteps) * 100;
 
   return (
     <div className="w-full max-w-2xl mx-auto mb-8">
@@ -35,7 +37,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
           const stepNumber = index + 1;
           const isCompleted = completedSteps.includes(stepNumber);
           const isCurrent = stepNumber === currentStep;
-          const isPassed = stepNumber < currentStep;
+          const [isHovered, setIsHovered] = React.useState(false);
 
           return (
             <div
@@ -51,15 +53,19 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
             >
               <div
                 className={cn(
-                  "flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-300",
-                  isCompleted || isPassed
-                    ? "bg-gradient-to-r from-vibe-purple-500 to-vibe-blue-500 border-transparent text-white"
+                  "flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-300 cursor-pointer group",
+                  isCompleted && !isHovered
+                    ? "bg-green-500 border-green-500 text-white"
                     : isCurrent
                       ? "border-vibe-purple-500 bg-gray-900 text-vibe-purple-400"
-                      : "border-gray-600 bg-gray-800 text-gray-400",
+                      : isCompleted && isHovered
+                        ? "border-gray-600 bg-gray-800 text-gray-400"
+                        : "border-gray-600 bg-gray-800 text-gray-400",
                 )}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
               >
-                {isCompleted ? (
+                {isCompleted && !isHovered ? (
                   <Check className="w-4 h-4" />
                 ) : (
                   <span className="text-sm font-medium">{stepNumber}</span>
@@ -68,9 +74,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
               <span
                 className={cn(
                   "text-xs font-medium transition-colors duration-300",
-                  isCurrent || isCompleted || isPassed
-                    ? "text-white"
-                    : "text-gray-400",
+                  isCurrent || isCompleted ? "text-white" : "text-gray-400",
                 )}
               >
                 {stepNames[index]}
