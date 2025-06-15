@@ -2,7 +2,7 @@ import React from "react";
 import { ProgressBar } from "./ProgressBar";
 import { OnboardingFooter } from "./OnboardingFooter";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface OnboardingLayoutProps {
@@ -39,12 +39,11 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Header with logo and progress */}
       <header className="flex items-center justify-between p-8 bg-gray-900">
-        <div className="flex items-center">
-          <img
-            src="https://app.maybefinance.com/assets/logomark-color-338c2794.svg"
-            alt="VibeWealth"
-            className="h-10 w-auto"
-          />
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 bg-gradient-to-r from-vibe-purple-500 to-vibe-blue-500 rounded-xl flex items-center justify-center">
+            <TrendingUp className="w-6 h-6 text-white" />
+          </div>
+          <span className="text-xl font-bold text-white">VibeWealth</span>
         </div>
         {showSkip && !isLastStep && (
           <button
