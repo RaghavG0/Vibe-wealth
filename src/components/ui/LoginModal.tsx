@@ -225,7 +225,7 @@ export function LoginModal({
                     type="button"
                     onClick={handleGoogleLogin}
                     variant="outline"
-                    className="w-full border-gray-700 text-white hover:bg-gray-800 py-3 rounded-xl transition-all"
+                    className="w-full border-gray-700 bg-gray-800 text-white hover:bg-gray-700 py-3 rounded-xl transition-all"
                   >
                     <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                       <path
@@ -259,14 +259,6 @@ export function LoginModal({
                     >
                       Sign Up
                     </button>
-                  </p>
-                </div>
-
-                {/* Demo Credentials */}
-                <div className="mt-4 p-3 bg-gray-800/50 rounded-lg border border-gray-700">
-                  <p className="text-xs text-gray-400 text-center">
-                    <strong className="text-gray-300">Demo:</strong>{" "}
-                    demo@vibewealth.com / password123
                   </p>
                 </div>
               </div>
