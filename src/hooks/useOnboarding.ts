@@ -50,10 +50,15 @@ export const useOnboarding = () => {
 
   const setCurrentStep = useCallback((step: number) => {
     setData((prev) => {
-      // When going back to a previous step, remove completed status from future steps
-      const updatedCompletedSteps = prev.completedSteps.filter(
-        (completedStep) => completedStep < step,
-      );
+      // Only clear completed steps when going backward (step < prev.currentStep)
+      let updatedCompletedSteps = prev.completedSteps;
+
+      if (step < prev.currentStep) {
+        // Going backward - remove completed status from future steps
+        updatedCompletedSteps = prev.completedSteps.filter(
+          (completedStep) => completedStep < step,
+        );
+      }
 
       return {
         ...prev,
