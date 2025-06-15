@@ -49,7 +49,18 @@ export const useOnboarding = () => {
   }, []);
 
   const setCurrentStep = useCallback((step: number) => {
-    setData((prev) => ({ ...prev, currentStep: step }));
+    setData((prev) => {
+      // When going back to a previous step, remove completed status from future steps
+      const updatedCompletedSteps = prev.completedSteps.filter(
+        (completedStep) => completedStep < step,
+      );
+
+      return {
+        ...prev,
+        currentStep: step,
+        completedSteps: updatedCompletedSteps,
+      };
+    });
   }, []);
 
   const markStepCompleted = useCallback((step: number) => {
