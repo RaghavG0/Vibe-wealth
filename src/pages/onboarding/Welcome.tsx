@@ -47,6 +47,7 @@ export const Welcome: React.FC = () => {
     useOnboarding();
 
   useEffect(() => {
+    // Always set current step to 4 when on welcome page
     setCurrentStep(4);
     markStepCompleted(4);
   }, [setCurrentStep, markStepCompleted]);
