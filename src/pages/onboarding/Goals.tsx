@@ -123,6 +123,22 @@ export const Goals: React.FC = () => {
     navigate("/onboarding/preferences");
   };
 
+  const handleStepClick = (step: number) => {
+    const routes = [
+      "/onboarding/setup",
+      "/onboarding/preferences",
+      "/onboarding/goals",
+      "/onboarding/welcome",
+    ];
+
+    if (step === 3) {
+      // Already on goals page
+      return;
+    }
+
+    navigate(routes[step - 1]);
+  };
+
   const isFormValid = validateStep(3);
 
   return (
@@ -132,6 +148,7 @@ export const Goals: React.FC = () => {
       completedSteps={data.completedSteps}
       onNext={handleNext}
       onBack={handleBack}
+      onStepClick={handleStepClick}
       isNextDisabled={!isFormValid}
       className="max-w-2xl"
     >
