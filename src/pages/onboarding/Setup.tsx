@@ -52,6 +52,7 @@ export const Setup: React.FC = () => {
   const [userData, setUserData] = useState<any>(null);
 
   useEffect(() => {
+    // Always set current step to 1 when on setup page
     setCurrentStep(1);
 
     // Check if user just signed up
@@ -66,13 +67,17 @@ export const Setup: React.FC = () => {
         lastName: user.lastName || "",
       });
 
-      // Show welcome message
-      setShowWelcomeMessage(true);
+      // Show welcome message only on first visit
+      const hasShownWelcome = sessionStorage.getItem("welcome-shown");
+      if (!hasShownWelcome) {
+        setShowWelcomeMessage(true);
+        sessionStorage.setItem("welcome-shown", "true");
 
-      // Hide welcome message after 4 seconds
-      setTimeout(() => {
-        setShowWelcomeMessage(false);
-      }, 4000);
+        // Hide welcome message after 4 seconds
+        setTimeout(() => {
+          setShowWelcomeMessage(false);
+        }, 4000);
+      }
     }
   }, [setCurrentStep, updateData]);
 
