@@ -65,6 +65,22 @@ export const Welcome: React.FC = () => {
     navigate("/budgeting");
   };
 
+  const handleStepClick = (step: number) => {
+    const routes = [
+      "/onboarding/setup",
+      "/onboarding/preferences",
+      "/onboarding/goals",
+      "/onboarding/welcome",
+    ];
+
+    if (step === 4) {
+      // Already on welcome page
+      return;
+    }
+
+    navigate(routes[step - 1]);
+  };
+
   const setupItems = [
     "Profile configured",
     "Preferences saved",
@@ -77,6 +93,7 @@ export const Welcome: React.FC = () => {
       currentStep={4}
       totalSteps={4}
       completedSteps={data.completedSteps}
+      onStepClick={handleStepClick}
       className="max-w-2xl"
     >
       <div className="text-center space-y-8">
