@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Sparkles, CheckCircle } from "lucide-react";
 import { Button } from "./button";
+import { LoginModal } from "./LoginModal";
 
 const benefits = [
   "Start with $0 - completely free forever plan",
@@ -12,6 +14,7 @@ const benefits = [
 
 export function FinalCTA() {
   const navigate = useNavigate();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   return (
     <section className="py-20 relative overflow-hidden">
@@ -104,7 +107,7 @@ export function FinalCTA() {
             <Button
               size="lg"
               variant="outline"
-              onClick={() => navigate("/")}
+              onClick={() => setIsLoginModalOpen(true)}
               className="border-white text-white bg-transparent hover:bg-white/10 hover:text-white backdrop-blur-sm px-8 py-4 text-lg font-semibold hover:border-white/80 border-2"
             >
               Already have an account? Login
@@ -112,6 +115,16 @@ export function FinalCTA() {
           </motion.div>
         </div>
       </div>
+
+      {/* Login Modal */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSignUpClick={() => {
+          setIsLoginModalOpen(false);
+          navigate("/signup");
+        }}
+      />
     </section>
   );
 }
