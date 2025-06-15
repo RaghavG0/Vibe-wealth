@@ -181,50 +181,6 @@ export function WhyUs() {
             ))}
           </div>
         </motion.div>
-
-        {/* Testimonials */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-            What our <span className="text-vibe-purple-700">community</span>{" "}
-            says
-          </h3>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-8 shadow-lg border border-vibe-gray-100 hover:shadow-xl hover:border-vibe-purple-200 transition-all duration-300"
-              >
-                <Quote className="w-8 h-8 text-vibe-purple-400 mb-4" />
-                <p className="text-vibe-gray-700 mb-6 leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 rounded-full bg-vibe-gradient flex items-center justify-center text-xl">
-                    {testimonial.avatar}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-vibe-gray-800">
-                      {testimonial.author}
-                    </div>
-                    <div className="text-sm text-vibe-gray-600">
-                      {testimonial.role}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
