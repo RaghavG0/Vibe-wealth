@@ -90,13 +90,7 @@ export const useOnboarding = () => {
     (step: number): boolean => {
       switch (step) {
         case 1:
-          return !!(
-            data.firstName &&
-            data.lastName &&
-            data.age &&
-            data.occupation &&
-            data.country
-          );
+          return !!(data.firstName && data.lastName && data.age);
         case 2:
           return !!(
             data.colorTheme &&
