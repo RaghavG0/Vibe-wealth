@@ -45,7 +45,12 @@ export const useOnboarding = () => {
   const [data, setData] = useState<OnboardingData>(initialData);
 
   const updateData = useCallback((updates: Partial<OnboardingData>) => {
-    setData((prev) => ({ ...prev, ...updates }));
+    console.log("updateData called with:", updates);
+    setData((prev) => {
+      const newData = { ...prev, ...updates };
+      console.log("Data updated from:", prev, "to:", newData);
+      return newData;
+    });
   }, []);
 
   const setCurrentStep = useCallback((step: number) => {
